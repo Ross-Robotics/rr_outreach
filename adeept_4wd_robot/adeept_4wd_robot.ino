@@ -107,18 +107,18 @@ void Tracking(){
     // Serial.print("\tA1: ");Serial.print(analogRead(A1));
     // Serial.print("\tA2: ");Serial.println(analogRead(A2));
     if(analogRead(A0)>THRESH_H&&analogRead(A1)>THRESH_H&&analogRead(A2)>THRESH_H){
-      //ctrlCar(FORWARD,120);//Three tracking detections are black lines
+      ctrlCar(FORWARD,120);//Three tracking detections are black lines
     }
     if(analogRead(A0)>THRESH_H&&analogRead(A1)<THRESH_L&&analogRead(A2)<THRESH_L){
-      //ctrlCar(RIGHT,120);//Right A2 tracking detection is black line
+      ctrlCar(RIGHT,120);//Right A2 tracking detection is black line
     }
     if(analogRead(A0)<THRESH_L&&analogRead(A1)>THRESH_H&&analogRead(A2)<THRESH_L){
-      //ctrlCar(FORWARD,120);//The middle side A1 tracking is detected as a black line
+      ctrlCar(FORWARD,120);//The middle side A1 tracking is detected as a black line
     }
     if(analogRead(A0)<THRESH_L&&analogRead(A1)<THRESH_L&&analogRead(A2)>THRESH_H){
-      //ctrlCar(LEFT,120);//Left A0 tracking detection is black line
+      ctrlCar(LEFT,120);//Left A0 tracking detection is black line
     }
     if(analogRead(A0)<THRESH_L&&analogRead(A1)<THRESH_L&&analogRead(A2)<THRESH_L){
-      //ctrlCar(STOP,0);//A0, A1, A2 tracking does not detect black lines
+      ctrlCar(STOP,0);//A0, A1, A2 tracking does not detect black lines
     }
 }
