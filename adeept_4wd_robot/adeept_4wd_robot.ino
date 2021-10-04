@@ -1,14 +1,6 @@
-/***********************************************************
-File name:  wifi_arduinoTCP18.ino
-Website: www.adeept.com
-E-mail: support@adeept.com
-Author: Tom
-Date: 2019/10/30 
-***********************************************************/
 #include <Servo.h>
 #include <Adafruit_NeoPixel.h>
 // Which pin on the Arduino is connected to the NeoPixels?
-// On a Trinket or Gemma we suggest changing this to 1
 #define PIN            8
 // How many NeoPixels are attached to the Arduino?
 #define NUMPIXELS      3
@@ -16,11 +8,13 @@ Date: 2019/10/30
 // Note that for older NeoPixel strips you might need to change the third parameter--see the strandtest
 // example for more information on possible values.
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
 //Motor control port
 const int dirAPin = 7;    // define pin used to control rotational direction of motor A
 const int pwmAPin = 6;    // define pin for PWM used to control rotational speed of motor A
 const int dirBPin = 4;    // define pin used to control rotational direction of motor B
 const int pwmBPin = 5;    // define pin for PWM used to control rotational speed of motor B
+
 //Define motor control direction
 #define FORWARD 1
 #define BACKWARD 2
