@@ -132,4 +132,22 @@ void Tracking(){
     if(right_sensor>THRESH_H&&centre_sensor>THRESH_H&&left_sensor>THRESH_H){
       ctrlCar(FORWARD,110);//Three tracking detections are black lines
     }
+    if(right_sensor>THRESH_H&&centre_sensor<THRESH_H&&left_sensor<THRESH_H){
+      ctrlCar(MILD_RIGHT,150);//ONLY RIGHT sensor detectiing
+    }
+    if(right_sensor>THRESH_H&&centre_sensor>THRESH_H&&left_sensor<THRESH_H){
+      ctrlCar(MILD_RIGHT,150);//RIGHT and CENTRE sensor detectiing
+    }
+    if(right_sensor<THRESH_H&&centre_sensor<THRESH_H&&left_sensor>THRESH_H){
+      ctrlCar(MILD_LEFT,150);//ONLY LEFT sensor detectiing
+    }
+    if(right_sensor<THRESH_H&&centre_sensor>THRESH_H&&left_sensor>THRESH_H){
+      ctrlCar(MILD_LEFT,150);//LEFT and CENTRE sensor detectiing
+    }
+    if(right_sensor<THRESH_H&&centre_sensor>THRESH_H&&left_sensor<THRESH_H){
+      ctrlCar(FORWARD,110);//CENTRE sensor detectiing
+    }
+    if(right_sensor<THRESH_H&&centre_sensor<THRESH_H&&left_sensor<THRESH_H){
+      ctrlCar(STOP,0);//CENTRE sensor detectiing
+    }
 }
