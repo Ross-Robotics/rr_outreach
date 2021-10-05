@@ -20,7 +20,9 @@ const int pwmBPin = 5;    // define pin for PWM used to control rotational speed
 #define BACKWARD 2
 #define LEFT 3
 #define RIGHT 4
-#define STOP 4
+#define STOP 5
+#define MILD_RIGHT 6
+#define MILD_LEFT 7
 #define THRESH_H 1000
 #define THRESH_L 100
 
@@ -54,25 +56,52 @@ void loop() {
 }
 //Control motor motion direction and speed function
 void ctrlCar( int motorDir, byte motorSpd) {
+  byte motorSpdA;
+  byte motorSpdB;
   switch(motorDir){
     case 1:digitalWrite(dirAPin, HIGH);
            digitalWrite(dirBPin, LOW);
+           motorSpdA = motorSpd;
+           motorSpdB = motorSpd;
            break;
     case 2:digitalWrite(dirAPin, LOW);
            digitalWrite(dirBPin, HIGH);
+           motorSpdA = motorSpd;
+           motorSpdB = motorSpd;
            break;
     case 3:digitalWrite(dirAPin, HIGH);
            digitalWrite(dirBPin, HIGH);
+           motorSpdA = motorSpd;
+           motorSpdB = motorSpd;
            break;
     case 4:digitalWrite(dirAPin, LOW);
            digitalWrite(dirBPin, LOW);
+           motorSpdA = motorSpd;
+           motorSpdB = motorSpd;
+           break;    
+    case 5:digitalWrite(dirAPin, LOW);
+           digitalWrite(dirBPin, LOW);
+           motorSpdA = 0;
+           motorSpdB = 0;
+           break;    
+    case 6:digitalWrite(dirAPin, HIGH);
+           digitalWrite(dirBPin, HIGH;
+           motorSpdA = motorSpd + 10;
+           motorSpdB = motorSpd - 10;
+           break;    
+    case 7:digitalWrite(dirAPin, LOW);
+           digitalWrite(dirBPin, LOW);
+           motorSpdA = motorSpd -10;
+           motorSpdB = motorSpd + 10;
            break;    
     default:digitalWrite(dirAPin, LOW);
            digitalWrite(dirBPin, LOW);
+           motorSpdA = 0;
+           motorSpdB = 0;
            break;     
   }
-  analogWrite(pwmAPin, motorSpd);
-  analogWrite(pwmBPin, motorSpd);
+  analogWrite(pwmAPin, motorSpdA);
+  analogWrite(pwmBPin, motorSpdB);
 }
 void LedFeedback(){
   if(analogRead(A0)>THRESH_H){
@@ -97,9 +126,6 @@ void LedFeedback(){
 }
 void Tracking(){
     
-    // Serial.print("A0: ");Serial.print(analogRead(A0));
-    // Serial.print("\tA1: ");Serial.print(analogRead(A1));
-    // Serial.print("\tA2: ");Serial.println(analogRead(A2));
     if(analogRead(A0)>THRESH_H&&analogRead(A1)>THRESH_H&&analogRead(A2)>THRESH_H){
       ctrlCar(FORWARD,120);//Three tracking detections are black lines
     }
